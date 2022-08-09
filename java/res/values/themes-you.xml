@@ -95,7 +95,7 @@
         <item name="keyPreviewDismissAnimator">@anim/key_preview_dismiss_lxx</item>
         <item name="gestureFloatingPreviewTextColor">@color/auto_correct_color_lxx_dark</item>
         <item name="gestureFloatingPreviewColor">@color/gesture_floating_preview_color_lxx_dark</item>
-        <item name="gestureTrailColor">@color/gesture_trail_color_lxx_dark</item>
+        <item name="gestureTrailColor">@color/gesture_trail_color_you</item>
         <item name="slidingKeyInputPreviewColor">@color/sliding_key_input_preview_color_lxx_dark</item>
         <item name="languageOnSpacebarTextColor">@color/key_text_inactive_color_lxx_dark</item>
         <!-- A negative value to disable text shadow layer. -->
