@@ -72,6 +72,8 @@ public final class KeyboardSwitcher implements KeyboardState.SwitchActions {
     // we need to keep the one used for creation to detect changes
     private Configuration mThemeConfig;
 
+    private int mActiveUiMode;
+
     private static final KeyboardSwitcher sInstance = new KeyboardSwitcher();
 
     public static KeyboardSwitcher getInstance() {
@@ -105,11 +107,15 @@ public final class KeyboardSwitcher implements KeyboardState.SwitchActions {
 
     private boolean updateKeyboardThemeAndContextThemeWrapper(final Context context,
             final KeyboardTheme keyboardTheme) {
-        if (mThemeContext == null || !keyboardTheme.equals(mKeyboardTheme)
+        final boolean darkModeChanged = (mActiveUiMode & Configuration.UI_MODE_NIGHT_MASK)
+                != (context.getResources().getConfiguration().uiMode
+                    & Configuration.UI_MODE_NIGHT_MASK);
+        if (mThemeContext == null || !keyboardTheme.equals(mKeyboardTheme) || darkModeChanged
                 || !mThemeContext.getResources().equals(context.getResources())
                 || !mThemeConfig.equals(context.getResources().getConfiguration())) {
             mKeyboardTheme = keyboardTheme;
             mThemeContext = new ContextThemeWrapper(context, keyboardTheme.mStyleId);
+            mActiveUiMode = context.getResources().getConfiguration().uiMode;
             mThemeConfig = mThemeContext.getResources().getConfiguration();
             KeyboardLayoutSet.onKeyboardThemeChanged();
             return true;
