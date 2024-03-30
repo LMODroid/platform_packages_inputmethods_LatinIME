@@ -229,8 +229,14 @@ public final class DictionaryService extends Service {
         final long now = System.currentTimeMillis();
         final long alarmTime = now + new Random().nextInt(MAX_ALARM_DELAY_MILLIS);
         final Intent updateIntent = new Intent(DictionaryPackConstants.UPDATE_NOW_INTENT_ACTION);
-        final PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0,
-                updateIntent, PendingIntent.FLAG_CANCEL_CURRENT);
+        // Set the package name to ensure the PendingIntent is only delivered to trusted components
+        updateIntent.setPackage(context.getPackageName());
+        final PendingIntent pendingIntent;
+        if (android.os.Build.VERSION.SDK_INT >= 23) {
+            pendingIntent = PendingIntent.getBroadcast(context, 0, updateIntent, PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_CANCEL_CURRENT);
+        } else {
+            pendingIntent = PendingIntent.getBroadcast(context, 0, updateIntent, PendingIntent.FLAG_CANCEL_CURRENT);
+        }
 
         // We set the alarm in the type that doesn't forcefully wake the device
         // from sleep, but fires the next time the device actually wakes for any
