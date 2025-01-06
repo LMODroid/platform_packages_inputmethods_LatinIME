@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     SPDX-FileCopyrightText: 2025 The LibreMobileOS Foundation
+     SPDX-License-Identifier: Apache-2.0
+-->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+  <path
+      android:pathData="m39.5,75c0,-2.49 2.01,-4.5 4.5,-4.5l21,0c2.49,0 4.5,2.01 4.5,4.5l0,0c0,2.49 -2.01,4.5 -4.5,4.5l-21,0c-2.49,0 -4.5,-2.01 -4.5,-4.5z"
+      android:fillColor="#134e76"/>
+  <path
+      android:pathData="M37.5,46.13m-6,0a6,6 0,1 1,12 0a6,6 0,1 1,-12 0"
+      android:fillColor="#afe2f1"/>
+  <path
+      android:pathData="M54.5,46.13m-6,0a6,6 0,1 1,12 0a6,6 0,1 1,-12 0"
+      android:fillColor="#ffffff"/>
+  <path
+      android:pathData="M71.5,46.13m-6,0a6,6 0,1 1,12 0a6,6 0,1 1,-12 0"
+      android:fillColor="#afe2f1"/>
+  <path
+      android:pathData="M37.5,60.88m-6,0a6,6 0,1 1,12 0a6,6 0,1 1,-12 0"
+      android:fillColor="#afe2f1"/>
+  <path
+      android:pathData="M54.5,60.88m-6,0a6,6 0,1 1,12 0a6,6 0,1 1,-12 0"
+      android:fillColor="#afe2f1"/>
+  <path
+      android:pathData="M71.5,60.88m-6,0a6,6 0,1 1,12 0a6,6 0,1 1,-12 0"
+      android:fillColor="#afe2f1"/>
+</vector>
