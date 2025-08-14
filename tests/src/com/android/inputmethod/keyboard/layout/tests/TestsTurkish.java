@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014 The Android Open Source Project
+ * Copyright (C) 2025 The Android Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,35 +19,37 @@ package com.android.inputmethod.keyboard.layout.tests;
 import androidx.test.filters.SmallTest;
 
 import com.android.inputmethod.keyboard.layout.LayoutBase;
-import com.android.inputmethod.keyboard.layout.Qwerty;
+import com.android.inputmethod.keyboard.layout.Turkish;
 import com.android.inputmethod.keyboard.layout.customizer.EuroCustomizer;
-import com.android.inputmethod.keyboard.layout.customizer.TurkicCustomizer;
+import com.android.inputmethod.keyboard.layout.customizer.TurkishCustomizer;
 import com.android.inputmethod.keyboard.layout.expected.ExpectedKeyboardBuilder;
 
 import java.util.Locale;
 
 /**
- * tr: Turkish/qwerty
+ * tr: Turkish/turkish
  */
 @SmallTest
 public final class TestsTurkish extends LayoutTestsBase {
     private static final Locale LOCALE = new Locale("tr");
-    private static final LayoutBase LAYOUT = new Qwerty(new TurkishCustomizer(LOCALE));
+    private static final LayoutBase LAYOUT = new Turkish(new TurkishCustomizer(LOCALE));
 
     @Override
     LayoutBase getLayout() { return LAYOUT; }
 
     private static class TurkishCustomizer extends EuroCustomizer {
-        private final TurkicCustomizer mTurkicCustomizer;
+        private final com.android.inputmethod.keyboard.layout.customizer.TurkishCustomizer
+        mTurkishCustomizer;
 
         TurkishCustomizer(final Locale locale) {
             super(locale);
-            mTurkicCustomizer = new TurkicCustomizer(locale);
+            mTurkishCustomizer = new com.android.inputmethod.keyboard.layout.customizer
+        .TurkishCustomizer(locale);
         }
 
         @Override
         public ExpectedKeyboardBuilder setAccentedLetters(final ExpectedKeyboardBuilder builder) {
-            return mTurkicCustomizer.setAccentedLetters(builder);
+            return mTurkishCustomizer.setAccentedLetters(builder);
         }
     }
 }
