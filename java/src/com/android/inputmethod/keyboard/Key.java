@@ -340,7 +340,9 @@ public class Key implements Comparable<Key> {
         final int disabledIconId = KeySpecParser.getIconId(style.getString(keyAttr,
                 R.styleable.Keyboard_Key_keyIconDisabled));
 
-        final int code = KeySpecParser.getCode(keySpec);
+        final String keySpecUpper = style.getString(keyAttr, R.styleable.Keyboard_Key_keySpecUpper);
+        final int code = KeySpecParser.getCode(
+                (needsToUpcase && keySpecUpper != null) ? keySpecUpper : keySpec);
         if ((mLabelFlags & LABEL_FLAGS_FROM_CUSTOM_ACTION_LABEL) != 0) {
             mLabel = params.mId.mCustomActionLabel;
         } else if (code >= Character.MIN_SUPPLEMENTARY_CODE_POINT) {
@@ -351,7 +353,9 @@ public class Key implements Comparable<Key> {
         } else {
             final String label = KeySpecParser.getLabel(keySpec);
             mLabel = needsToUpcase
-                    ? StringUtils.toTitleCaseOfKeyLabel(label, localeForUpcasing)
+                    ? keySpecUpper != null
+                        ? KeySpecParser.getLabel(keySpecUpper)
+                        : StringUtils.toTitleCaseOfKeyLabel(label, localeForUpcasing)
                     : label;
         }
         if ((mLabelFlags & LABEL_FLAGS_DISABLE_HINT_LABEL) != 0) {
@@ -365,7 +369,9 @@ public class Key implements Comparable<Key> {
         }
         String outputText = KeySpecParser.getOutputText(keySpec);
         if (needsToUpcase) {
-            outputText = StringUtils.toTitleCaseOfKeyLabel(outputText, localeForUpcasing);
+            outputText = keySpecUpper != null
+                    ? KeySpecParser.getOutputText(keySpecUpper)
+                    : StringUtils.toTitleCaseOfKeyLabel(outputText, localeForUpcasing);
         }
         // Choose the first letter of the label as primary code if not specified.
         if (code == CODE_UNSPECIFIED && TextUtils.isEmpty(outputText)
@@ -392,7 +398,9 @@ public class Key implements Comparable<Key> {
                 mCode = CODE_OUTPUT_TEXT;
             }
         } else {
-            mCode = needsToUpcase ? StringUtils.toTitleCaseOfKeyCode(code, localeForUpcasing)
+            // If keySpecUpper is not null, we've already upcased the code if required
+            mCode = (needsToUpcase && keySpecUpper == null)
+                    ? StringUtils.toTitleCaseOfKeyCode(code, localeForUpcasing)
                     : code;
         }
         final int altCodeInAttr = KeySpecParser.parseCode(
