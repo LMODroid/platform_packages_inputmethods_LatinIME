@@ -20,14 +20,12 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.preference.Preference;
-import android.preference.PreferenceScreen;
+import androidx.preference.Preference;
+import androidx.preference.PreferenceScreen;
 import android.provider.Settings.Secure;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.ListView;
 
 import com.android.inputmethod.latin.R;
 import com.android.inputmethod.latin.define.ProductionFlags;
@@ -58,16 +56,6 @@ public final class SettingsFragment extends InputMethodSettingsFragment {
             final Preference accountsPreference = findPreference(Settings.SCREEN_ACCOUNTS);
             preferenceScreen.removePreference(accountsPreference);
         }
-    }
-
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-
-        // remove dividers
-        View rootView = getView();
-        ListView list = (ListView) rootView.findViewById(android.R.id.list);
-        list.setDivider(null);
     }
 
     @Override
